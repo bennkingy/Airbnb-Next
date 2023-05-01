@@ -19,7 +19,7 @@ import Heading from "../Heading";
 import Input from "../inputs/Input";
 import Modal from "./Modal";
 
-const RegisterModal= () => {
+const RegisterModal = () => {
   const registerModal = useRegisterModal();
   // const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
@@ -30,6 +30,7 @@ const RegisterModal= () => {
     formState: {
       errors,
     },
+    reset,
   } = useForm<FieldValues>({
     defaultValues: {
       name: '',
@@ -37,6 +38,20 @@ const RegisterModal= () => {
       password: ''
     },
   });
+
+  const resetForm = useCallback(() => {
+    reset(
+      {
+        name: '',
+        email: '',
+        password: ''
+      },
+      {
+        keepErrors: false, 
+        keepDirty: true,
+      }
+    );
+  }, [reset])
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
@@ -57,8 +72,9 @@ const RegisterModal= () => {
 
   const onToggle = useCallback(() => {
     registerModal.onClose();
+    resetForm();
     // loginModal.onOpen();  
-  }, [registerModal]) // loginModal
+  }, [registerModal, resetForm]) // loginModal
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
