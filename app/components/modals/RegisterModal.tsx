@@ -48,7 +48,7 @@ const RegisterModal= () => {
       // loginModal.onOpen();
     })
       .catch((error) => {
-      toast.error(error?.message || 'Something went wrong.');
+        toast.error(error?.message || 'Something went wrong.');
     })
     .finally(() => {
       setIsLoading(false);
@@ -57,7 +57,7 @@ const RegisterModal= () => {
 
   const onToggle = useCallback(() => {
     registerModal.onClose();
-    // loginModal.onOpen();
+    // loginModal.onOpen();  
   }, [registerModal]) // loginModal
 
   const bodyContent = (
