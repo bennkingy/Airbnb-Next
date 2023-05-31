@@ -9,7 +9,6 @@ import {
   useForm
 } from "react-hook-form";
 import { toast } from "react-hot-toast";
-// import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 
 import useLoginModal from "@/app/hooks/useLoginModal";
@@ -119,12 +118,6 @@ const RegisterModal = () => {
         icon={FcGoogle}
         onClick={() => signIn('google')} 
       />
-      {/* <Button 
-        outline 
-        label="Continue with Github"
-        icon={AiFillGithub}
-        onClick={() => signIn('github')}
-      /> */}
       <div 
         className="
           text-neutral-500 
