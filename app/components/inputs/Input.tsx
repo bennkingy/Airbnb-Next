@@ -12,6 +12,7 @@ interface InputProps {
   required?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
+  description?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -23,25 +24,27 @@ const Input: React.FC<InputProps> = ({
   register,
   required,
   errors,
+  description,
 }) => {
   return (
-    <div className="w-full relative">
+    <div className='w-full relative'>
       {formatPrice && (
         <BiDollar
           size={24}
-          className="
+          className='
             text-neutral-700
             absolute
             top-5
             left-2
-          "
+          '
         />
       )}
       <input
+        contentEditable={true}
         id={id}
         disabled={disabled}
         {...register(id, { required })}
-        placeholder=" "
+        placeholder=' '
         type={type}
         className={`
           peer
@@ -56,6 +59,7 @@ const Input: React.FC<InputProps> = ({
           transition
           disabled:opacity-70
           disabled:cursor-not-allowed
+          ${description ? 'h-64' : ''}
           ${formatPrice ? 'pl-9' : 'pl-4'}
           ${errors[id] ? 'border-rose-500' : 'border-neutral-300'}
           ${errors[id] ? 'focus:border-rose-500' : 'focus:border-black'}

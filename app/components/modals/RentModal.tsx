@@ -6,7 +6,10 @@ import { FieldValues, useForm } from 'react-hook-form';
 import Heading from '../Heading';
 import Map from '../Map';
 import CategoryInput from '../inputs/CategoryInput';
+import Counter from '../inputs/Counter';
 import CountrySelect from '../inputs/CountySelect';
+import ImageUpload from '../inputs/ImageUpload';
+import Input from '../inputs/Input';
 import { categories } from '../navbar/Categories';
 import Modal from './Modal';
 
@@ -130,100 +133,101 @@ const RentModal = () => {
     );
   }
 
-  // if (step === STEPS.INFO) {
-  //   bodyContent = (
-  //     <div className='flex flex-col gap-8'>
-  //       <Heading
-  //         title='Share some basics about your place'
-  //         subtitle='What amenitis do you have?'
-  //       />
-  //       <Counter
-  //         onChange={(value) => setCustomValue('guestCount', value)}
-  //         value={guestCount}
-  //         title='Guests'
-  //         subtitle='How many guests do you allow?'
-  //       />
-  //       <hr />
-  //       <Counter
-  //         onChange={(value) => setCustomValue('roomCount', value)}
-  //         value={roomCount}
-  //         title='Rooms'
-  //         subtitle='How many rooms do you have?'
-  //       />
-  //       <hr />
-  //       <Counter
-  //         onChange={(value) => setCustomValue('bathroomCount', value)}
-  //         value={bathroomCount}
-  //         title='Bathrooms'
-  //         subtitle='How many bathrooms do you have?'
-  //       />
-  //     </div>
-  //   );
-  // }
+  if (step === STEPS.INFO) {
+    bodyContent = (
+      <div className='flex flex-col gap-8'>
+        <Heading
+          title='Share some basics about your place'
+          subtitle='What amenitis do you have?'
+        />
+        <Counter
+          onChange={(value) => setCustomValue('guestCount', value)}
+          value={guestCount}
+          title='Guests'
+          subtitle='How many guests do you allow?'
+        />
+        <hr />
+        <Counter
+          onChange={(value) => setCustomValue('roomCount', value)}
+          value={roomCount}
+          title='Rooms'
+          subtitle='How many rooms do you have?'
+        />
+        <hr />
+        <Counter
+          onChange={(value) => setCustomValue('bathroomCount', value)}
+          value={bathroomCount}
+          title='Bathrooms'
+          subtitle='How many bathrooms do you have?'
+        />
+      </div>
+    );
+  }
 
-  // if (step === STEPS.IMAGES) {
-  //   bodyContent = (
-  //     <div className='flex flex-col gap-8'>
-  //       <Heading
-  //         title='Add a photo of your place'
-  //         subtitle='Show guests what your place looks like!'
-  //       />
-  //       <ImageUpload
-  //         onChange={(value) => setCustomValue('imageSrc', value)}
-  //         value={imageSrc}
-  //       />
-  //     </div>
-  //   );
-  // }
+  if (step === STEPS.IMAGES) {
+    bodyContent = (
+      <div className='flex flex-col gap-8'>
+        <Heading
+          title='Add a photo of your place'
+          subtitle='Show guests what your place looks like!'
+        />
+        <ImageUpload
+          onChange={(value) => setCustomValue('imageSrc', value)}
+          value={imageSrc}
+        />
+      </div>
+    );
+  }
 
-  // if (step === STEPS.DESCRIPTION) {
-  //   bodyContent = (
-  //     <div className='flex flex-col gap-8'>
-  //       <Heading
-  //         title='How would you describe your place?'
-  //         subtitle='Short and sweet works best!'
-  //       />
-  //       <Input
-  //         id='title'
-  //         label='Title'
-  //         disabled={isLoading}
-  //         register={register}
-  //         errors={errors}
-  //         required
-  //       />
-  //       <hr />
-  //       <Input
-  //         id='description'
-  //         label='Description'
-  //         disabled={isLoading}
-  //         register={register}
-  //         errors={errors}
-  //         required
-  //       />
-  //     </div>
-  //   );
-  // }
+  if (step === STEPS.DESCRIPTION) {
+    bodyContent = (
+      <div className='flex flex-col gap-8'>
+        <Heading
+          title='How would you describe your place?'
+          subtitle='Short and sweet works best!'
+        />
+        <Input
+          id='title'
+          label='Title'
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+        <hr />
+        <Input
+          id='description'
+          label='Description'
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+          description={true}
+        />
+      </div>
+    );
+  }
 
-  // if (step === STEPS.PRICE) {
-  //   bodyContent = (
-  //     <div className='flex flex-col gap-8'>
-  //       <Heading
-  //         title='Now, set your price'
-  //         subtitle='How much do you charge per night?'
-  //       />
-  //       <Input
-  //         id='price'
-  //         label='Price'
-  //         formatPrice
-  //         type='number'
-  //         disabled={isLoading}
-  //         register={register}
-  //         errors={errors}
-  //         required
-  //       />
-  //     </div>
-  //   );
-  // }
+  if (step === STEPS.PRICE) {
+    bodyContent = (
+      <div className='flex flex-col gap-8'>
+        <Heading
+          title='Now, set your price'
+          subtitle='How much do you charge per night?'
+        />
+        <Input
+          id='price'
+          label='Price'
+          formatPrice
+          type='number'
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+      </div>
+    );
+  }
 
   return (
     <Modal

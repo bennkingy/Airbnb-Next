@@ -31,6 +31,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }: UserMenuProps) => {
     rentModal.onOpen();
   }, [currentUser, loginModal, rentModal]);
 
+  console.log(currentUser);
+
   return (
     <div className='relative'>
       <div className='flex flex-row items-center gap-3'>

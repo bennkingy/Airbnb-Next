@@ -44,13 +44,14 @@ const Map: React.FC<MapProps> = ({ center }) => {
   return (
     <MapContainer
       center={(center as L.LatLngExpression) || [51, -0.09]}
-      zoom={center ? 4 : 2}
+      zoom={center ? 8 : 4}
       scrollWheelZoom={false}
       className='h-[35vh] rounded-lg'
       // @ts-ignore
       whenCreated={(map) => {
         mapRef.current = map;
       }}
+      zoomControl={false} // Hide the zoom controls
     >
       <TileLayer url={url} attribution={attribution} />
       <FlyToLocation />
