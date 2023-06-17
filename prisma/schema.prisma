@@ -1,74 +1,74 @@
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client-js" // Generate Prisma client code for JavaScript
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+  provider = "mongodb" // Use MongoDB as the data source
+  url      = env("DATABASE_URL") // Retrieve the database URL from the environment variable DATABASE_URL
 }
 
 model User {
-  id             String    @id @default(auto()) @map("_id") @db.ObjectId
-  name           String?
-  email          String?   @unique
-  emailVerified  DateTime?
-  image          String?
-  hashedPassword String?
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  favoriteIds    String[]  @db.ObjectId
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for the user, using MongoDB ObjectId
+  name           String? // User's name (optional)
+  email          String?   @unique // User's email, unique constraint
+  emailVerified  DateTime? // Date and time when the email was verified
+  image          String? // User's image URL
+  hashedPassword String? // Hashed user password
+  createdAt      DateTime  @default(now()) // Date and time when the user was created
+  updatedAt      DateTime  @updatedAt // Date and time when the user was last updated
+  favoriteIds    String[]  @db.ObjectId // Array of favorite listing IDs, using MongoDB ObjectId
 
-  accounts     Account[]
-  listings     Listing[]
-  reservations Reservation[]
+  accounts     Account[] // One-to-many relationship with Account model
+  listings     Listing[] // One-to-many relationship with Listing model
+  reservations Reservation[] // One-to-many relationship with Reservation model
 }
 
 model Account {
-  id                String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId            String  @db.ObjectId
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String? @db.String
-  access_token      String? @db.String
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String? @db.String
-  session_state     String?
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for the account, using MongoDB ObjectId
+  userId            String  @db.ObjectId // Foreign key referencing the User model
+  type              String // Type of the account
+  provider          String // Account provider
+  providerAccountId String // Account ID from the provider
+  refresh_token     String? @db.String // Refresh token for the account
+  access_token      String? @db.String // Access token for the account
+  expires_at        Int? // Expiry timestamp for the tokens
+  token_type        String? // Token type
+  scope             String? // Scope of the account
+  id_token          String? @db.String // ID token for the account
+  session_state     String? // Session state
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade) // Many-to-one relationship with User model
 
-  @@unique([provider, providerAccountId])
+  @@unique([provider, providerAccountId]) // Unique constraint on provider and providerAccountId combination
 }
 
 model Listing {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  title         String
-  description   String
-  imageSrc      String
-  createdAt     DateTime @default(now())
-  category      String
-  roomCount     Int
-  bathroomCount Int
-  guestCount    Int
-  locationValue String
-  userId        String   @db.ObjectId
-  price         Int
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for the listing, using MongoDB ObjectId
+  title         String // Listing title
+  description   String // Listing description
+  imageSrc      String // URL of the listing image
+  createdAt     DateTime @default(now()) // Date and time when the listing was created
+  category      String // Listing category
+  roomCount     Int // Number of rooms in the listing
+  bathroomCount Int // Number of bathrooms in the listing
+  guestCount    Int // Maximum number of guests allowed
+  locationValue String // Location value of the listing
+  userId        String   @db.ObjectId // Foreign key referencing the User model
+  price         Int // Listing price
 
-  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  reservations Reservation[]
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade) // Many-to-one relationship with User model
+  reservations Reservation[] // One-to-many relationship with Reservation model
 }
 
 model Reservation {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId     String   @db.ObjectId
-  listingId  String   @db.ObjectId
-  startDate  DateTime
-  endDate    DateTime
-  totalPrice Int
-  createdAt  DateTime @default(now())
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for the reservation, using MongoDB ObjectId
+  userId     String   @db.ObjectId // Foreign key referencing the User model
+  listingId  String   @db.ObjectId // Foreign key referencing the Listing model
+  startDate  DateTime // Start date of the reservation
+  endDate    DateTime // End date of the reservation
+  totalPrice Int // Total price of the reservation
+  createdAt  DateTime @default(now()) // Date and time when the reservation was created
 
-  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade) // Many-to-one relationship with User model
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade) // Many-to-one relationship with Listing model
 }
