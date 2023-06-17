@@ -32,11 +32,11 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }: UserMenuProps) => {
   }, [currentUser, loginModal, rentModal]);
 
   return (
-    <div className="relative">
-      <div className="flex flex-row items-center gap-3">
+    <div className='relative'>
+      <div className='flex flex-row items-center gap-3'>
         <div
           onClick={onRent}
-          className="
+          className='
             hidden
             md:block
             text-sm 
@@ -47,13 +47,13 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }: UserMenuProps) => {
             hover:bg-neutral-100 
             transition 
             cursor-pointer
-          "
+          '
         >
-          Airbnb your home
+          Get a quote
         </div>
         <div
           onClick={toggleOpen}
-          className="
+          className='
 					p-4
 					md:py-1
 					md:px-2
@@ -67,17 +67,17 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }: UserMenuProps) => {
 					cursor-pointer 
 					hover:shadow-md 
 					transition
-					"
+					'
         >
           <AiOutlineMenu />
-          <div className="hidden md:block">
+          <div className='hidden md:block'>
             <Avatar src={currentUser?.image} />
           </div>
         </div>
       </div>
       {isOpen && (
         <div
-          className="
+          className='
             absolute 
             rounded-xl 
             shadow-md
@@ -88,23 +88,23 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }: UserMenuProps) => {
             right-0 
             top-12 
             text-sm
-          "
+          '
         >
-          <div className="flex flex-col cursor-pointer">
+          <div className='flex flex-col cursor-pointer'>
             {currentUser ? (
               <>
-                <MenuItem label="My trips" onClick={() => {}} />
-                <MenuItem label="My favorites" onClick={() => {}} />
-                <MenuItem label="My reservations" onClick={() => {}} />
-                <MenuItem label="My properties" onClick={() => {}} />
-                <MenuItem label="Airbnb your home" onClick={onRent} />
+                <MenuItem label='My trips' onClick={() => {}} />
+                <MenuItem label='My favorites' onClick={() => {}} />
+                <MenuItem label='My reservations' onClick={() => {}} />
+                <MenuItem label='My properties' onClick={() => {}} />
+                <MenuItem label='Get a quote' onClick={onRent} />
                 <hr />
-                <MenuItem label="Logout" onClick={() => signOut()} />
+                <MenuItem label='Logout' onClick={() => signOut()} />
               </>
             ) : (
               <>
-                <MenuItem label="Login" onClick={loginModal.onOpen} />
-                <MenuItem label="Sign up" onClick={registerModal.onOpen} />
+                <MenuItem label='Login' onClick={loginModal.onOpen} />
+                <MenuItem label='Sign up' onClick={registerModal.onOpen} />
               </>
             )}
           </div>
