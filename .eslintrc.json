@@ -2,6 +2,6 @@
   "extends": ["prettier", "next/core-web-vitals"],
   "plugins": ["prettier"],
   "rules": {
-    "prettier/prettier": ["error", { "endOfLine": "auto", "tabWidth": 2, "max-len": ["error", { "code": 80, "ignoreComments": true }] }]
+    // "prettier/prettier": ["error", { "endOfLine": "auto", "tabWidth": 2, "max-len": ["error", { "code": 80, "ignoreComments": true }] }]
   }
 }
