@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import { BiSearch } from 'react-icons/bi';
+import { BiSearch } from "react-icons/bi";
 
 const Search = () => {
-  return ( 
-    <div className="
+  return (
+    <div
+      className="
       border-[1px] 
       w-full 
       md:w-auto 
@@ -16,7 +17,7 @@ const Search = () => {
       cursor-pointer
       "
     >
-      <div 
+      <div
         className="
           flex 
           flex-row 
@@ -24,7 +25,7 @@ const Search = () => {
           justify-between
         "
       >
-        <div 
+        <div
           className="
             text-sm 
             font-semibold 
@@ -33,7 +34,7 @@ const Search = () => {
         >
           Anywhere
         </div>
-        <div 
+        <div
           className="
             hidden 
             sm:block 
@@ -47,7 +48,7 @@ const Search = () => {
         >
           Any week
         </div>
-        <div 
+        <div
           className="
             text-sm 
             pl-6 
@@ -60,7 +61,7 @@ const Search = () => {
           "
         >
           <div className="hidden sm:block">Add guests</div>
-          <div 
+          <div
             className="
               p-2 
               bg-rose-500 
@@ -74,6 +75,6 @@ const Search = () => {
       </div>
     </div>
   );
-}
- 
+};
+
 export default Search;

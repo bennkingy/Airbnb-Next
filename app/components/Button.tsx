@@ -1,6 +1,6 @@
 'use client';
 
-import { IconType } from "react-icons";
+import { IconType } from 'react-icons';
 
 interface ButtonProps {
   label: string;
@@ -11,15 +11,15 @@ interface ButtonProps {
   icon?: IconType;
 }
 
-const Button: React.FC<ButtonProps> = ({ 
-  label, 
-  onClick, 
-  disabled, 
+const Button: React.FC<ButtonProps> = ({
+  label,
+  onClick,
+  disabled,
   outline,
   small,
   icon: Icon,
 }) => {
-  return ( 
+  return (
     <button
       disabled={disabled}
       onClick={onClick}
@@ -41,19 +41,19 @@ const Button: React.FC<ButtonProps> = ({
       `}
     >
       {Icon && (
-        <div className="
+        <div
+          className="
           absolute
           left-4
           top-3
-        ">
-        <Icon
-          size={24}
-          />
+        "
+        >
+          <Icon size={24} />
         </div>
       )}
       {label}
     </button>
-   );
-}
- 
+  );
+};
+
 export default Button;
