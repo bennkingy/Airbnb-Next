@@ -68,6 +68,7 @@ const RegisterModal = () => {
     registerModal.onClose();
     resetForm();
     loginModal.onOpen();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [registerModal, resetForm]); // loginModal
 
   const bodyContent = (
