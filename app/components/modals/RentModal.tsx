@@ -263,7 +263,7 @@ const RentModal = () => {
       disabled={isLoading}
       isOpen={rentModal.isOpen}
       body={bodyContent}
-      title='Get a Quote now!'
+      title='Air bnb your home!'
       actionLabel={actionLabel}
       onClose={rentModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
