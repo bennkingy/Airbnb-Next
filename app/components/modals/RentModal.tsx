@@ -68,6 +68,8 @@ const RentModal = () => {
     });
   };
 
+  const [isImageSelected, setIsImageSelected] = useState(false);
+
   const onBack = () => {
     setStep((value) => value - 1);
   };
@@ -77,6 +79,11 @@ const RentModal = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    if (step === STEPS.IMAGES && !isImageSelected) {
+      toast.error('Please add a photo of your place.');
+      return;
+    }
+
     if (step !== STEPS.PRICE) {
       return onNext();
     }
@@ -201,9 +208,17 @@ const RentModal = () => {
           subtitle='Show guests what your place looks like!'
         />
         <ImageUpload
-          onChange={(value) => setCustomValue('imageSrc', value)}
+          onChange={(value) => {
+            setCustomValue('imageSrc', value);
+            setIsImageSelected(!!value);
+          }}
           value={imageSrc}
         />
+        {!isImageSelected && (
+          <span className='text-red-600'>
+            Please add a photo of your place.
+          </span>
+        )}
       </div>
     );
   }
