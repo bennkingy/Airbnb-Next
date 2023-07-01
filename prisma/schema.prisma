@@ -17,10 +17,12 @@ model User {
   createdAt      DateTime  @default(now()) // Date and time when the user was created
   updatedAt      DateTime  @updatedAt // Date and time when the user was last updated
   favoriteIds    String[]  @db.ObjectId // Array of favorite listing IDs, using MongoDB ObjectId
+  isAdmin        Boolean   @default(false) // Indicates whether the user is an admin or not
 
   accounts     Account[] // One-to-many relationship with Account model
   listings     Listing[] // One-to-many relationship with Listing model
   reservations Reservation[] // One-to-many relationship with Reservation model
+  BlogPost     BlogPost[]
 }
 
 model Account {
@@ -71,4 +73,14 @@ model Reservation {
 
   user    User    @relation(fields: [userId], references: [id], onDelete: Cascade) // Many-to-one relationship with User model
   listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade) // Many-to-one relationship with Listing model
+}
+
+model BlogPost {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for the blog post, using MongoDB ObjectId
+  title     String // Blog post title
+  content   String // Blog post content
+  published DateTime @default(now()) // Date and time when the blog post was published
+  userId    String   @db.ObjectId // Foreign key referencing the User model
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade) // Many-to-one relationship with User model
 }
