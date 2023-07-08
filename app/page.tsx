@@ -4,7 +4,6 @@ import Container from '@/app/components/Container';
 import EmptyState from '@/app/components/EmptyState';
 import ListingCard from '@/app/components/listings/ListingCard';
 import ClientOnly from './components/ClientOnly';
-
 interface HomeProps {
   searchParams: IListingsParams;
 }

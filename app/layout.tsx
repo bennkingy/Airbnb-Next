@@ -1,3 +1,5 @@
+'use-client';
+
 import { Nunito } from 'next/font/google';
 import getCurrentUser from './actions/getCurrentUser';
 import ClientOnly from './components/ClientOnly';
@@ -34,7 +36,7 @@ export default async function RootLayout({
           <RentModal />
           <Navbar currentUser={currentUser} />
         </ClientOnly>
-        <div className='pb-20 pt-28'>{children}</div>
+        <div className='py-28'>{children}</div>
       </body>
     </html>
   );
